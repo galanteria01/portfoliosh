@@ -1,0 +1,25 @@
+# The local package-lock.json is git-ignored because it resolves packages from
+# an internal registry that Netlify cannot reach. `npm install` lets Netlify
+# regenerate a fresh lockfile from the public registry during the build.
+[build]
+  command = "npm install && npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  # Force the public registry on Netlify regardless of any local npm config.
+  NPM_CONFIG_REGISTRY = "https://registry.npmjs.org/"
+  # Don't fail the build just because a committed lockfile is absent.
+  NPM_CONFIG_PACKAGE_LOCK = "true"
+
+# Official Next.js runtime. Netlify auto-installs this on deploy when the
+# plugin is declared here, so it does not need to be a project dependency.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"

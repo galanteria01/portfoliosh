@@ -2,6 +2,9 @@
 
 # dependencies
 /node_modules
+
+# lockfile resolves from an internal registry; let Netlify regenerate it
+/package-lock.json
 /.pnp
 .pnp.*
 .yarn/*
@@ -35,6 +38,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# netlify
+.netlify
 
 # typescript
 *.tsbuildinfo
