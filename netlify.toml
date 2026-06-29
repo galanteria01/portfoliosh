@@ -6,7 +6,7 @@
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
   # Force the public registry on Netlify regardless of any local npm config.
   NPM_CONFIG_REGISTRY = "https://registry.npmjs.org/"
   # Don't fail the build just because a committed lockfile is absent.
